@@ -22,16 +22,21 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
+							{!! Form::label('email', 'E-Mail Address', ['class' => 'col-md-4 control-label']) !!}
+							<!--<label class="col-md-4 control-label">E-Mail Address</label>-->
 							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
+								{!! Form::text('email', old('email'), ['class' => 'form-control', 'type' => 'email']) !!}
+								<!--<input type="email" class="form-control" name="email" value="{{ old('email') }}">-->
+								
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
+							{!! Form::label('password', 'Password', ['class' => 'col-md-4 control-label']) !!}
+							<!--<label class="col-md-4 control-label">Password</label>-->
 							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
+								{!! Form::password('password', ['class' => 'form-control']) !!}
+								<!--<input type="password" class="form-control" name="password">-->
 							</div>
 						</div>
 
@@ -39,7 +44,8 @@
 							<div class="col-md-6 col-md-offset-4">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" name="remember"> Remember Me
+										{!! Form::checkbox('remember') !!} Remember Me
+										<!--<input type="checkbox" name="remember"> Remember Me-->
 									</label>
 								</div>
 							</div>
@@ -47,9 +53,10 @@
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Login</button>
-
-								<a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
+								{!! Form::submit('Login', ['class' => 'btn btn-primary']) !!}
+								<!--<button type="submit" class="btn btn-primary">Login</button>-->
+								{!! link_to_asset("/password/email", $title = 'Forgot Your Password?', $attributes = ['class' => 'btn btn-link'], $secure = null) !!}
+								<!-- <a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>-->
 							</div>
 						</div>
 					</form>
