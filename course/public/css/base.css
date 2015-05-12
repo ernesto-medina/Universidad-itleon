@@ -89,7 +89,7 @@ body {
 
 main {
   display: block;
-  background-color: #f7fbce;
+  background-color: #fff;
 }
 
 .container {
@@ -374,4 +374,35 @@ a {
 
 a:hover {
   color: #818181;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.header {
+    height: 640px;
+    margin-bottom: 25%;
+}  
+.header_top{
+  padding:1em 0 0 0;
+}
+.top-nav{
+  float: left;
+  width: 37%;
+  margin-left: 16%;
+  margin-top: 30px;
 }

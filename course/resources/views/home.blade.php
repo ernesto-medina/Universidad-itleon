@@ -23,18 +23,25 @@
 
 <div class="wrapper">
 
-  <div class="info-bar">
-    <div class="container">
-      <a class="icon cmn-tut" data-title="Back To Tutorial" href="http://callmenick.com/?p=718"></a>
-      <a class="icon cmn-prev" data-title="Pevious Demo - Revealing Content Overlays With CSS3 Transitions" href="http://callmenick.com/tutorial-demos/revealing-content-overlays/"></a>
-      <!-- <a class="icon cmn-next" data-title="Next Demo - " href="http://callmenick.com/tutorial-demos/..."></a> -->
-      <a class="icon cmn-download" data-title="Download Source" href="http://callmenick.com/tutorial-demos/simple-parallax-effect/simple-parallax-effect-source.zip"></a>
-      <a class="icon cmn-archive" data-title="Tutorial Archives" href="http://callmenick.com/category/tutorials/"></a>
+  <main>
+      <div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+    <section class="module parallax parallax-1">
+        <div class="container">
+          <h1>Serene</h1>
+        </div>
+      </section>
+    </div>
+    <div class="span10">
+    <section class="module parallax parallax-1">
+        <div class="container">
+          <h1>Serene</h1>
+        </div>
+      </section>
     </div>
   </div>
-
-  <main>
-      
+</div>
       <section class="module parallax parallax-1">
         <div class="container">
           <h1>Serene</h1>
