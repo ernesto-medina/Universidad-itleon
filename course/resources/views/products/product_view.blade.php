@@ -10,11 +10,11 @@
                 <!-- Include the Etalage files -->
                 <script>
                         jQuery(document).ready(function($){
-            
+
                             $('#etalage').etalage({
                                 thumb_image_width: 300,
                                 thumb_image_height: 400,
-                                
+
                                 show_hint: true,
                                 click_callback: function(image_anchor, instance_id){
                                     alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
@@ -47,7 +47,7 @@
 </div>
 <div class="col-md-9 content_right">
            <div class="dreamcrub">
-            
+
                 <div class="clearfix"></div>
                </div>
                <div class="singel_right">
@@ -61,11 +61,12 @@
                                 </a>
                             </li>
 
-                           
+
                             <div class="clearfix"> </div>
                         </ul>
                     <!-- end product_slider -->
               </div>
+              {!! Form::open(['route'=>'addCart','method'=>'POST']) !!}
               <div class="cont1 span_2_of_a1">
                 <h1> {{ $product['name'] }}</h1>
                 <!-- <ul class="rating">
@@ -75,7 +76,7 @@
                 </ul> -->
                 <div class="price_single">
                   <span class="actual"> {{ $product['unit_cost'] or '0.0'}}</span>
-                  
+
                 </div>
                 <h2 class="quick">Quick Overview:</h2>
                 <p class="quick_desc"> {{ $product['description'] }}</p>
@@ -100,6 +101,7 @@
                   </form>
                 </div>
             </div>
+            {!! Form::close() !!}
             <div class="clearfix"></div>
            </div>
         </div>

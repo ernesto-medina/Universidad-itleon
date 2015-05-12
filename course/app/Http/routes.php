@@ -17,6 +17,9 @@ Route::get('home', 'HomeController@index');
 
 Route::get('products', 'Products\ProductsController@index');
 Route::resource('product', 'Products\ProductsController');
+Route::post('addCart', ['as' => 'addCart','uses' => 'Products\ProductsController@addCart']);
+
+
 
 Route::controllers([
     'users' => 'UsersController',
@@ -24,8 +27,6 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () { 
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::resource('users', 'UsersController');
 });
-
-

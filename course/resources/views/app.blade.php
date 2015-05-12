@@ -79,7 +79,12 @@ border-top: 0px;border-left: 0px;border-right: 0px;
 					@endif
 
 			</ul>
-			<!-- <i class="glyphicon glyphicon-shopping-cart fa-2x"></i> -->
+			<i class="glyphicon glyphicon-shopping-cart fa-2x"></i><?php
+use Gloudemans\Shoppingcart\Facades\Cart as Test;
+use Illuminate\Support\Facades\Session as Session;
+$prueba=Test::instance(Session::get('_token'))->count();
+?>
+{{$prueba}}
 			<div class="clearfix"> </div>
 		</div>
 	</div>
