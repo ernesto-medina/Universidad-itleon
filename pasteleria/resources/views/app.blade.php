@@ -62,7 +62,7 @@ border-top: 0px;border-left: 0px;border-right: 0px;
 
 				<ul class="nav1">
 					<li class="active"><a href="{{ url('/') }}">Inicio</a></li>
-					<li><a href="#feature" class="scroll">Catalogo</a></li>
+					<li><a href="{{ url('/products') }}">Catalogo</a></li>
 					<li><a href="#price" class="scroll">Promociones</a></li>
 					<li><a href="contact.html">Contacto</a></li>
 				</ul>
