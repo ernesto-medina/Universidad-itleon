@@ -24,3 +24,4 @@ Route::controllers([
 
 Route::get('products', 'Products\ProductsController@index');
 Route::resource('product', 'Products\ProductsController');
+Route::post('addCart', ['as' => 'addCart','uses' => 'Products\ProductsController@addCart']);
