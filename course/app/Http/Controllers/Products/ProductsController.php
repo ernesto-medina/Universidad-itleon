@@ -1,11 +1,12 @@
 <?php namespace App\Http\Controllers\Products;
+
 use Cart;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
+use Faker\Factory as Faker;
 
 class ProductsController extends Controller {
 
@@ -14,15 +15,12 @@ class ProductsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	protected  $request;
+
 
 	public function index()
 	{
 		//
 		$products = Product::paginate();
-		$cart_instance = Cart::instance(Session::get('_token'));
-	$cart_instance->add('193ao12', 'Product 2', 1, 9.99);
-
 		return view('Products.index', compact('products'));
 
 	}
@@ -96,8 +94,9 @@ class ProductsController extends Controller {
     {
         $data=$request->all();
 				//dd(Session::get('_token'));
+				$faker = Faker::create();
  				$cart_instance = Cart::instance(Session::get('_token'));
-				$cart_instance->add('192ao12', 'Product 1', 1, 9.99);
+				$cart_instance->add($faker->uuid(), $data['product_id'], 1, 9.99);
         return redirect()->back();
     }
 

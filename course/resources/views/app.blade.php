@@ -37,16 +37,25 @@
 					});
 					</script>
 
+					<script type="text/javascript">
+					$(document).ready(
+						function(){
+					    $('[data-toggle="popover"]').popover({
+									html : true,
+					        placement : 'bottom'
+					    });
+					});
+					</script>
 
 
 
 </head>
 <body>
 
-<div class="header" style="  margin-bottom: 0%;  height: 250px;border-style: solid;
+<div class="header form-control" style="  margin-bottom: 0%;  height: 250px;border-style: solid;
 border-top: 0px;border-left: 0px;border-right: 0px;
     border-bottom: solid #594737;">
-   <div class="container">
+   <div class="container ">
 	  	<div class="header_top">
 
 			<div class="top-nav">
@@ -66,8 +75,18 @@ border-top: 0px;border-left: 0px;border-right: 0px;
 					 });
 				</script>
 				<!-- /script-for-menu -->
+
 			</div>
+			<button style="border:0px solid transparent;background: transparent;" type="button" data-toggle="popover" title="Popover title" data-content="&lt;div&gt;This is your div content&lt;/div&gt;"><a class="link-cart" >
+				<i class="glyphicon glyphicon-shopping-cart fa-3x"></i><?php
+			use Gloudemans\Shoppingcart\Facades\Cart as Test;
+			use Illuminate\Support\Facades\Session as Session;
+			$prueba=Test::instance(Session::get('_token'))->count();
+			?>{{$prueba}}
+			</a></button>
 			<ul class="widget">
+
+			</br>
 					@if (Auth::guest())
 					<a href="{{ url('/auth/login') }}"><li class="login">Iniciar Sesión</li></a>
 						<a href="{{ url('/auth/register') }}"><li class="join">Resgistrar</li></a>
@@ -79,15 +98,13 @@ border-top: 0px;border-left: 0px;border-right: 0px;
 					@endif
 
 			</ul>
-			<i class="glyphicon glyphicon-shopping-cart fa-2x"></i><?php
-use Gloudemans\Shoppingcart\Facades\Cart as Test;
-use Illuminate\Support\Facades\Session as Session;
-$prueba=Test::instance(Session::get('_token'))->count();
-?>
-{{$prueba}}
+
 			<div class="clearfix"> </div>
+
+
 		</div>
 	</div>
+
 </div>
 
 
