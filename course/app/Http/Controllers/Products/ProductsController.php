@@ -96,7 +96,15 @@ class ProductsController extends Controller {
 				//dd(Session::get('_token'));
 				$faker = Faker::create();
  				$cart_instance = Cart::instance(Session::get('_token'));
-				$cart_instance->add($faker->uuid(), $data['product_id'], 1, 9.99);
+				$line_id = $cart_instance->search(array('name' => $data['product_id']));
+				if ($line_id){
+					$cart_instance->update($line_id[0], $cart_instance->get($line_id[0])['qty']+1);
+				}
+				else{
+					$cart_instance->add($faker->uuid(), $data['product_id'], 1, 9.99);
+				}
+
+
         return redirect()->back();
     }
 

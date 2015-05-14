@@ -77,10 +77,33 @@ border-top: 0px;border-left: 0px;border-right: 0px;
 				<!-- /script-for-menu -->
 
 			</div>
-			<button style="border:0px solid transparent;background: transparent;" type="button" data-toggle="popover" title="Popover title" data-content="&lt;div&gt;This is your div content&lt;/div&gt;"><a class="link-cart" >
+			<?php
+		use Gloudemans\Shoppingcart\Facades\Cart as Test;
+		use Illuminate\Support\Facades\Session as Session;
+		use App\Product;
+		$cart_data=Test::instance(Session::get('_token'));
+		?>
+			<button style="border:0px solid transparent;background: transparent;" type="button" data-toggle="popover" title="Popover title" data-content='
+			&lt;table class="table table-hover"&gt;<tr>
+  <td>Producto</td>
+	<td>Cantidad</td>
+	<td>Precio</td>
+</tr>
+@foreach ($cart_data->content() as $line)
+<tr>
+	<td>{{ Product::findOrFail($line["name"])["name"] }}</td>
+	<td>{{ $line["qty"] }}</td>
+	<td class="text-right">{{ $line["price"] }}</td>
+</tr>
+
+@endforeach
+<tr>
+	<td class="success text-right" colspan="3" >{{ $cart_data->total() }}</td>
+</tr>
+&lt;/table&gt;
+<button type="button" class="btn btn-success">Comprar</button>'><a class="link-cart" >
 				<i class="glyphicon glyphicon-shopping-cart fa-3x"></i><?php
-			use Gloudemans\Shoppingcart\Facades\Cart as Test;
-			use Illuminate\Support\Facades\Session as Session;
+
 			$prueba=Test::instance(Session::get('_token'))->count();
 			?>{{$prueba}}
 			</a></button>
