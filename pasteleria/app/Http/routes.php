@@ -19,3 +19,8 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+// Mis Rutas
+
+Route::get('products', 'Products\ProductsController@index');
+Route::resource('product', 'Products\ProductsController');
