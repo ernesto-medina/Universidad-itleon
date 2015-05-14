@@ -145,6 +145,10 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		//Mis Providers
+		'Collective\Html\HtmlServiceProvider',
+		'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',
+
 	],
 
 	/*
@@ -193,6 +197,11 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
+//Mis Alias
+
+		'Form' 			=> 'Collective\Html\FormFacade',
+		'Html' 			=> 'Collective\Html\HtmlFacade',
+		'Cart'      => 'Gloudemans\Shoppingcart\Facades\Cart',
 	],
 
 ];
