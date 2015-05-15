@@ -9912,3 +9912,51 @@ background: url(../img/demo/_small/grid_view.png)no-repeat;
 .info:hover {
    background:#000;
 }
+
+
+
+/*--footer--*/
+.footer{
+	background: #202020;
+    padding: 5em 0 2em;
+    text-align: center;
+}
+.footer img{
+	display:inline-block;
+}
+.footer p{
+	margin:2em 0;
+	font-size:0.85em;
+}
+.footer p a{
+    color:#fff;
+}
+.copy p{
+   color:#fff;
+}
+ul.social {
+	padding: 0;
+	list-style: none;
+	margin:0;
+}
+ul.social li:first-child {
+    margin-left: 0;
+}
+ul.social li{
+	display:inline-block;
+}
+ul.social li a i {
+   width: 40px;
+  height: 40px;
+  display: inline-block;
+  background: url(../img/demo/_small/social.png)no-repeat;
+}
+ul.social li a i.fb{
+  background-position:-3px -1px;
+}
+ul.social li a i.tw{
+  background-position:-50px -3px;
+}
+ul.social li a i:hover{
+	opacity:0.5;
+}

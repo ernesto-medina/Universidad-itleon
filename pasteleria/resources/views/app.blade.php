@@ -65,6 +65,9 @@ border-top: 0px;border-left: 0px;border-right: 0px;
 					<li><a href="{{ url('/products') }}">Catalogo</a></li>
 					<li><a href="#price" class="scroll">Promociones</a></li>
 					<li><a href="contact.html">Contacto</a></li>
+					@if (Auth::check() AND Auth::user()->type == 'admin')
+					<li><a href="">Usuarios</a></li>
+					@endif
 				</ul>
 				<!-- script-for-menu -->
 				 <script>
@@ -180,4 +183,19 @@ border-top: 0px;border-left: 0px;border-right: 0px;
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
+<footer>
+	<div class="footer">
+		<div class="container">
+			<img src="images/f_logo.png" alt=""/>
+			<p><a href="mailto:">pastelsta-cecilia@gmail.com</a></p>
+			<div class="copy">
+				<p>© 2015 All Rights Reseverd by <a href="">Pastelería Santa Cecilia</a> </p>
+			</div>
+			<ul class="social">
+				<li><a href="#"> <i class="fb"> </i> </a></li>
+				<li><a href="#"> <i class="tw"> </i> </a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
 </html>
