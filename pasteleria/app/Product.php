@@ -11,6 +11,13 @@ class Product extends Model {
      * @var string
      */
     protected $table = 'products';
-    
+
+
+
+    protected $fillable = ['name', 'description', 'kilos', 'image', 'unit_cost'];
+
+
+  
+
 
 }

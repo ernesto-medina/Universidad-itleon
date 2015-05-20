@@ -64,7 +64,6 @@ border-top: 0px;border-left: 0px;border-right: 0px;
 					<li class="active"><a href="{{ url('/') }}">Inicio</a></li>
 					<li><a href="{{ url('/products') }}">Catalogo</a></li>
 					<li><a href="#price" class="scroll">Promociones</a></li>
-					<li><a href="contact.html">Contacto</a></li>
 					@if (Auth::check() AND Auth::user()->type == 'admin')
 					<li><a href="">Usuarios</a></li>
 					@endif
@@ -86,7 +85,7 @@ border-top: 0px;border-left: 0px;border-right: 0px;
 		use App\Product;
 		$cart_data=Test::instance(Session::get('_token'));
 		?>
-			<button style="border:0px solid transparent;background: transparent;" type="button" data-toggle="popover" title="Popover title" data-content='
+			<button style="border:0px solid transparent;background: transparent;" type="button" data-toggle="popover" title="Carro de compras" data-content='
 			&lt;table class="table table-hover"&gt;<tr>
   <td>Producto</td>
 	<td>Cantidad</td>
@@ -101,10 +100,10 @@ border-top: 0px;border-left: 0px;border-right: 0px;
 
 @endforeach
 <tr>
-	<td class="success text-right" colspan="3" >{{ $cart_data->total() }}</td>
+	<td class="warning text-right" colspan="3" >{{ $cart_data->total() }}</td>
 </tr>
 &lt;/table&gt;
-<button type="button" class="btn btn-success">Comprar</button>'><a class="link-cart" >
+<button type="button" class="btn btn-block btn-info">Comprar</button>'><a class="link-cart" >
 				<i class="glyphicon glyphicon-shopping-cart fa-3x"></i><?php
 
 			$prueba=Test::instance(Session::get('_token'))->count();
@@ -115,7 +114,7 @@ border-top: 0px;border-left: 0px;border-right: 0px;
 			</br>
 					@if (Auth::guest())
 					<a href="{{ url('/auth/login') }}"><li class="login">Iniciar Sesión</li></a>
-						<a href="{{ url('/auth/register') }}"><li class="join">Resgistrar</li></a>
+						<a href="{{ url('/auth/register') }}"><li class="join">Registrar</li></a>
 
 					@else
 						<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><li class="login">{{ Auth::user()->name }}</li><span class="caret"></span></a>-->
@@ -184,17 +183,16 @@ border-top: 0px;border-left: 0px;border-right: 0px;
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
 <footer>
-	<div class="footer">
+	<div class="footer" style="  margin-top: 0%; height: 300px;">
 		<div class="container">
-			<img src="images/f_logo.png" alt=""/>
+			<img src="../img/demo/_small/st_cecilia.jpeg" alt="" style="width: 60px;
+	  height: 80px;
+	  display: inline-block;"/>
 			<p><a href="mailto:">pastelsta-cecilia@gmail.com</a></p>
 			<div class="copy">
 				<p>© 2015 All Rights Reseverd by <a href="">Pastelería Santa Cecilia</a> </p>
 			</div>
-			<ul class="social">
-				<li><a href="#"> <i class="fb"> </i> </a></li>
-				<li><a href="#"> <i class="tw"> </i> </a></li>
-			</ul>
+
 		</div>
 	</div>
 </footer>

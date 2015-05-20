@@ -7,7 +7,7 @@
 
 @if (Auth::check() AND Auth::user()->type == 'admin')
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Nuevo
+  Registrar Producto
 </button>
 
 <!-- Modal -->
@@ -16,7 +16,7 @@
     <div class="modal-content">
       <div class="modal-header panel-primary">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Nuevo Producto</h4>
+        <h4 class="modal-title" id="myModalLabel">Registrar Producto</h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -108,6 +108,7 @@
                     height:200
                 });
                 var file = this.files[0];
+
                 var reader = new FileReader();
                 // Set preview image into the popover data-content
                 reader.onload = function (e) {
@@ -121,6 +122,8 @@
           });
       });
         </script>
+
+        {!! Form::open(['route'=>'product.store', 'method'=> 'POST', 'files'=>true]) !!}
 
         <div class="input-group image-preview">
           <i class="fa fa-picture-o fa-3x"></br></i>
@@ -137,7 +140,8 @@
                 <div class="btn btn-default image-preview-input">
                     <span class="glyphicon glyphicon-folder-open"></span>
                     <span class="image-preview-input-title">Buscar</span>
-                    <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+
+                    <input type="file" accept="image/png, image/jpeg, image/gif" name="image_decode"/> <!-- rename it -->
                 </div>
             </span>
         </div><!-- /input-group image-preview [TO HERE]-->
@@ -145,30 +149,31 @@
           <div class="form-group">
             <div class="input-group ">
               <div class="input-group-addon"><i class="glyphicon glyphicon-tag fa-1x"></i></div>
-              <input type="text" class="form-control" placeholder="Nombre" style="resize:both;" required>
+              <input type="text" name="name" class="form-control" placeholder="Nombre" style="resize:both;" required>
             </div>
           </br>
             <div class="input-group">
               <div class="input-group-addon"><i class="fa fa-tachometer fa-1x"></i></div>
-              <input type="text" class="form-control" placeholder="Kilos Maximos" required>
+              <input type="text" name="kilos" class="form-control" placeholder="Kilos" required>
             </div>
           </div>
 
           <div class="input-group">
             <span class="input-group-addon">$</span>
-            <input type="text" class="form-control" placeholder="Precio Unitario" aria-label="monto (en pesos MXN)">
+            <input type="text" class="form-control" name="unit_cost" placeholder="Precio Unitario" aria-label="monto (en pesos MXN)">
             <span class="input-group-addon">.00</span>
           </div>
         </br>
-          <textarea name="textarea" style="width:270px;height:150px;" placeholder="Descripcion"></textarea>
+          <textarea name="description" style="width:270px;height:150px;" placeholder="Descripcion"></textarea>
 
       </div>
   </div>
           </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" style="background-color: #7DE4FF;">Guardar</button>
+        <button type="submit" class="btn btn-success" style="background-color: #7DE4FF;">Guardar</button>
       </div>
+      {!! Form::close() !!}
     </div>
   </div>
 </div>
@@ -176,8 +181,8 @@
 
 
 @endif
-<div class="main" style='margin-top: 0%;'>
-<a style="visibility:hidden;">$products = Products::paginate(6)</a>
+<div class="main" style='margin-top: 0%;background:		#fefef8'>
+<a style="visibility:hidden;">{{$products = DB::table('products')->paginate(6)}}</a>
     <div class="container">
      <div class="top_grid" id="arrow">
       <div class="content_top">
@@ -192,34 +197,57 @@
            <img src="{{$product->image}}" class="img-responsive" alt=""/><div class="b-wrapper2"><h2 class="b-animate b-from-left    b-delay03 ">Photo 1</h2><p class="b-animate b-from-right    b-delay03 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div></a>
         </div>
       @endforeach
-      -->
-        <div class="col-md-8 col1">
+    -->@if (!empty($products[0]))
+        <div class="col-md-4 ">
            <a href="#" class="b-link-stroke b-animate-go  thickbox img-rounded">
-           <img src="{{$products[0]->image}}" class="img-responsive" alt=""/><div class="b-wrapper2"><h2 class="b-animate b-from-left    b-delay03 ">{{$products[0]->name}}</h2><p class="b-animate b-from-top    b-delay03 ">{{$products[0]->description}} </br><span class="info" onclick="window.document.location='{{ route('product.show', $products[0]->id) }}';">Mostrar Información</span></p></div></a>
+           <img src="{{$products[0]->image}}" class="img-responsive" alt=""/><div class="b-wrapper1"><h2 class="b-animate b-from-left    b-delay03 ">{{$products[0]->name}}</h2><p class="b-animate b-from-right    b-delay03 ">{{$products[0]->description}} </br></br><span class="info" onclick="window.document.location='{{ route('product.show', $products[0]->id) }}';">Mostrar Información</span></p></div></a>
         </div>
+        @endif
+        @if (!empty($products[1]))
         <div class="col-md-4">
            <a href="#" class="b-link-stroke b-animate-go  thickbox img-rounded">
-           <img src="{{$products[1]->image}}" class="img-responsive" alt=""/><div class="b-wrapper1"><h2 class="b-animate b-from-left    b-delay03 ">{{$products[1]->name}}</h2><p class="b-animate b-from-right    b-delay03 ">{{$products[1]->description}} </br><span class="info" onclick="window.document.location='{{ route('product.show', $products[1]->id) }}';">Mostrar Información</span></p></div></a>
-          <div class="grid1">
-             <a href="#" class="b-link-stroke b-animate-go  thickbox img-rounded">
-           <img src="{{$products[2]->image}}" class="img-responsive" alt=""/><div class="b-wrapper1"><h2 class="b-animate b-from-left    b-delay03 ">{{$products[2]->name}}</h2><p class="b-animate b-from-right    b-delay03 ">{{$products[2]->description}} </br><span class="info" onclick="window.document.location='{{ route('product.show', $products[2]->id) }}';">Mostrar Información</span></p></div></a>
-          </div>
+
+           <img src="{{$products[1]->image}}" class="img-responsive" alt=""/><div class="b-wrapper1"><h2 class="b-animate b-from-left    b-delay03 ">{{$products[1]->name}}</h2><p class="b-animate b-from-right    b-delay03 ">{{$products[1]->description}} </br></br><span class="info" onclick="window.document.location='{{ route('product.show', $products[1]->id) }}';">Mostrar Información</span></p></div></a>
+
+           @endif
+
         </div>
+        @if (!empty($products[2]))
+
+        <div class="col-md-4">
+          <a href="#" class="b-link-stroke b-animate-go  thickbox img-rounded">
+
+        <img src="{{$products[2]->image}}" class="img-responsive" alt=""/><div class="b-wrapper1"><h2 class="b-animate b-from-left    b-delay03 ">{{$products[2]->name}}</h2><p class="b-animate b-from-right    b-delay03 ">{{$products[2]->description}} </br> </br><span class="info" onclick="window.document.location='{{ route('product.show', $products[2]->id) }}';">Mostrar Información</span></p></div></a>
+</div>
+        @endif
+
         <div class="clearfix"> </div>
       </div>
       <div class="content_middle_top">
+        @if (!empty($products[3]))
         <div class="col-md-4 ">
             <a href="#" class="b-link-stroke b-animate-go  thickbox img-rounded">
-           <img src="{{$products[3]->image}}" class="img-responsive" alt=""/><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">{{$products[3]->name}}</h2><p class="b-animate b-from-top    b-delay03 ">{{$products[3]->description}} </br><span class="info" onclick="window.document.location='{{ route('product.show', $products[3]->id) }}';">Mostrar Información</span></p></div></a>
+
+           <img src="{{$products[3]->image}}" class="img-responsive" alt=""/><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">{{$products[3]->name}}</h2><p class="b-animate b-from-top    b-delay03 ">{{$products[3]->description}} </br> </br><span class="info" onclick="window.document.location='{{ route('product.show', $products[3]->id) }}';">Mostrar Información</span></p></div></a>
+
         </div>
+        @endif
+        @if (!empty($products[4]))
         <div class="col-md-4 ">
             <a href="#" class="b-link-stroke b-animate-go  thickbox img-rounded">
-           <img src="{{$products[4]->image}}" class="img-responsive" alt=""/><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">{{$products[4]->name}}</h2><p class="b-animate b-from-top    b-delay03 ">{{$products[4]->description}} </br><span class="info" onclick="window.document.location='{{ route('product.show', $products[4]->id) }}';">Mostrar Información</span></p></div></a>
+
+           <img src="{{$products[4]->image}}" class="img-responsive" alt=""/><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">{{$products[4]->name}}</h2><p class="b-animate b-from-top    b-delay03 ">{{$products[4]->description}} </br> </br><span class="info" onclick="window.document.location='{{ route('product.show', $products[4]->id) }}';">Mostrar Información</span></p></div></a>
+
         </div>
+        @endif
+        @if (!empty($products[5]))
         <div class="col-md-4 ">
             <a href="#" class="b-link-stroke b-animate-go  thickbox img-rounded">
-           <img src="{{$products[5]->image}}" class="img-responsive" alt=""/><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">{{$products[5]->name}}</h2><p class="b-animate b-from-right    b-delay03 ">{{$products[5]->description}} </br><span class="info" onclick="window.document.location='{{ route('product.show', $products[5]->id) }}';">Mostrar Información</span></p></div></a>
+
+           <img src="{{$products[5]->image}}" class="img-responsive" alt=""/><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">{{$products[5]->name}}</h2><p class="b-animate b-from-right    b-delay03 ">{{$products[5]->description}} </br> </br><span class="info" onclick="window.document.location='{{ route('product.show', $products[5]->id) }}';">Mostrar Información</span></p></div></a>
+
         </div>
+        @endif
         <div class="clearfix"> </div>
       </div>
       </div>

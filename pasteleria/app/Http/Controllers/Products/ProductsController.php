@@ -1,12 +1,15 @@
 <?php namespace App\Http\Controllers\Products;
 
 use Cart;
+use DB;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
 use Faker\Factory as Faker;
+// import the Intervention Image Manager Class
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductsController extends Controller {
 
@@ -20,7 +23,7 @@ class ProductsController extends Controller {
 	public function index()
 	{
 		//
-		$products = Product::paginate();
+		$products = DB::table('products')->paginate();
 		return view('Products.index', compact('products'));
 
 	}
@@ -40,9 +43,20 @@ class ProductsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
 		//
+
+		$img_encode = (string) Image::make($request->all()['image_decode'])->fit(400,400)->encode('data-url');
+//dd($img_encode);
+		//dd(base64_decode(Image::make($request->all()['image_decode'])->fit(600, 600)), $img_encode);
+		$request->merge(array('image'=> $img_encode));
+
+		$product = new Product($request->all());
+
+		$product->save();
+		return view('Products.index', compact('products'));
+
 	}
 
 	/**
@@ -74,8 +88,11 @@ class ProductsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Request $request)
 	{
+
+		$user = Product::findOrFail($id)->update($request->all());
+		return \Redirect::back();
 		//
 	}
 
@@ -94,14 +111,15 @@ class ProductsController extends Controller {
     {
         $data=$request->all();
 				//dd(Session::get('_token'));
+				// dd($data);
 				$faker = Faker::create();
  				$cart_instance = Cart::instance(Session::get('_token'));
 				$line_id = $cart_instance->search(array('name' => $data['product_id']));
 				if ($line_id){
-					$cart_instance->update($line_id[0], $cart_instance->get($line_id[0])['qty']+1);
+					$cart_instance->update($line_id[0], $cart_instance->get($line_id[0])['qty']+$data['cantidad']);
 				}
 				else{
-					$cart_instance->add($faker->uuid(), $data['product_id'], 1, 9.99);
+					$cart_instance->add($faker->uuid(), $data['product_id'], $data['cantidad'], $data['product_precio']);
 				}
 
 

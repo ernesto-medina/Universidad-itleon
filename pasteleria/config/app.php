@@ -148,6 +148,7 @@ return [
 		//Mis Providers
 		'Collective\Html\HtmlServiceProvider',
 		'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',
+		'Intervention\Image\ImageServiceProvider',
 
 	],
 
@@ -202,6 +203,7 @@ return [
 		'Form' 			=> 'Collective\Html\FormFacade',
 		'Html' 			=> 'Collective\Html\HtmlFacade',
 		'Cart'      => 'Gloudemans\Shoppingcart\Facades\Cart',
+		'Image'     => 'Intervention\Image\Facades\Image',
 	],
 
 ];

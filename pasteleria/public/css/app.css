@@ -8035,7 +8035,7 @@ span.item-cat:hover{
   left:0;
   width:50%;
   height:100%;
-  background:rgba(248, 69, 69, 0.59);
+  background:rgba(127, 129, 190, 0.4);
 }
 .b-link-stroke .b-bottom-line{
   position:absolute;
@@ -8043,7 +8043,7 @@ span.item-cat:hover{
   right:0;
   width:50%;
   height:100%;
-  background:rgba(248, 69, 69, 0.59);
+  background:rgba(127, 129, 190, 0.4);
 }
 .b-link-stroke .b-top-line, .b-link-stroke .b-bottom-line{
   transition:all 0.5s;
@@ -8065,6 +8065,7 @@ span.item-cat:hover{
   text-decoration:none;
 }
 .b-animate{
+
   transition:all 0.5s;
   -moz-transition:all 0.5s;
   -ms-transition:all 0.5s;
@@ -8089,6 +8090,7 @@ span.item-cat:hover{
 }
 .b-animate-go:hover .b-from-right{
   right:0;
+
 }
 .b-from-top{
   position:relative;
@@ -9904,13 +9906,13 @@ background: url(../img/demo/_small/grid_view.png)no-repeat;
 
    text-decoration: none;
    padding: 7px 20px;
-   background: #eb5367;
+   background: 	#cbc17b;
    color: #fff;
    text-transform: uppercase;
     font-size:0.9em;
 }
 .info:hover {
-   background:#000;
+   background:	#eae6ca;
 }
 
 
