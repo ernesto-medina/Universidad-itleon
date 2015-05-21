@@ -104,6 +104,10 @@ class ProductsController extends Controller {
 	 */
 	public function destroy($id)
 	{
+
+		$product = Product::find($id);
+    $product->delete();
+		return view('Products.index', compact('products'));
 		//
 	}
 
@@ -125,5 +129,21 @@ class ProductsController extends Controller {
 
         return redirect()->back();
     }
+
+
+		public function removeCart(Request $request)
+	    {
+	        $data=$request->all();
+					//dd(Session::get('_token'));
+					//dd($data["row_id"]);
+
+	 				$cart_instance = Cart::instance(Session::get('_token'));
+
+					if ($data["row_id"]){
+						$cart_instance->remove($data["row_id"]);
+					}
+
+					return redirect()->back();
+	    }
 
 }

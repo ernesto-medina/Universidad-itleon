@@ -26,7 +26,7 @@
         .modal-header {
     padding:9px 15px;
     border-bottom:1px solid #eee;
-    background-color: #7DE4FF;
+    background-color: #cbc17b;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 5px;
@@ -171,7 +171,7 @@
           </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-success" style="background-color: #7DE4FF;">Guardar</button>
+        <button type="submit" class="btn btn-success" style="background-color: #cbc17b;">Guardar</button>
       </div>
       {!! Form::close() !!}
     </div>

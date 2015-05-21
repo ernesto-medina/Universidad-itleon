@@ -2810,7 +2810,7 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
   color: #ffffff;
-  background-color: #337ab7;
+  background-color: #cbc17b;
   border-color: #2e6da4;
 }
 .btn-primary:hover,
@@ -8946,7 +8946,7 @@ ul.single_social li a i.linked {
   bottom: 0;
   left: 0;
   border-radius: 0;
-  background:#f84545;
+  background:#cbc17b;
   z-index: -2;
   -webkit-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;

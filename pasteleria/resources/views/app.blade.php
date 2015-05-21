@@ -89,21 +89,33 @@ border-top: 0px;border-left: 0px;border-right: 0px;
 			&lt;table class="table table-hover"&gt;<tr>
   <td>Producto</td>
 	<td>Cantidad</td>
-	<td>Precio</td>
+	<td colspan="2">Precio</td>
+
 </tr>
 @foreach ($cart_data->content() as $line)
 <tr>
 	<td>{{ Product::findOrFail($line["name"])["name"] }}</td>
 	<td>{{ $line["qty"] }}</td>
 	<td class="text-right">{{ $line["price"] }}</td>
+	<td>
+
+		{!! Form::open(['route'=>'removeCart','method'=>'POST']) !!}
+		<input type="hidden" name="row_id" value="{{ $line->get("rowid") }}" />
+
+
+		<button type="submit"><i class="glyphicon glyphicon-trash fa-1x"></i></button>
+
+		{!! Form::close() !!}
+
+		</td>
 </tr>
 
 @endforeach
 <tr>
-	<td class="warning text-right" colspan="3" >{{ $cart_data->total() }}</td>
+	<td class="warning text-center" colspan="4" >{{ $cart_data->total() }}</td>
 </tr>
 &lt;/table&gt;
-<button type="button" class="btn btn-block btn-info">Comprar</button>'><a class="link-cart" >
+<button type="button" class="btn btn-primary btn-block">Finalizar Compra</button>'><a class="link-cart" >
 				<i class="glyphicon glyphicon-shopping-cart fa-3x"></i><?php
 
 			$prueba=Test::instance(Session::get('_token'))->count();

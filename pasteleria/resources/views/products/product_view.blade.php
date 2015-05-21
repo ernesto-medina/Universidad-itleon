@@ -28,7 +28,20 @@
 </script>
 
 <div class="container" style="background:#fefef8;margin-top: 0%;">
+
   @if (Auth::check() AND Auth::user()->type == 'admin')
+
+
+
+  <button class="btn btn-primary btn-lg pull-left" data-toggle="popover" title="¿Deseas eliminar este producto?" data-content='
+  {!! Form::model($product, ['route'=>['product.destroy', $product], 'method'=> 'DELETE']) !!}
+  <button type="submit" class="btn btn-primary btn-block" style="background-color: #7DE4FF;">Aceptar</button>
+  {!! Form::close() !!}
+
+  '>
+    Eliminar
+  </button>
+
 
   <button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">
     Editar
@@ -212,7 +225,7 @@
 
   @endif
 </br>
-  <div class="col-md-3">
+  <!--<div class="col-md-3">
     <div class="box1 ">
       <ul class="box1_list">
           <li><a href="#">Jeans</a></li>
@@ -227,7 +240,7 @@
           <li><a href="#">Caps & Hats</a></li>
       </ul>
     </div>
-  </div>
+  </div>-->
   <div class="col-md-9 content_right">
     <div class="dreamcrub">
       <div class="clearfix"></div>
